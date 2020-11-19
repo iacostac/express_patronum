@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<%-
+  include('../partials/head',{ titulo })
+-%>
+  <body>
+    <h1><%= titulo %></h1>
+    <p>Welcome to <%= titulo %></p>
+    <form action="/agregar_proceso" method="POST">
+    <label>
+        Titulo:
+        <input type="text" name="titulo"> 
+    </label><br>
+
+    <label>
+        Autor:
+        <input type="text" name="autor"> 
+    </label>
+    <label><br>
+        precio:
+        <input type="text" name="precio"> 
+    </label><br>
+    <input type="submit" value="Agregar Libro">
+    </form>
+  </body>
+</html>
