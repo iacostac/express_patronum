@@ -2,6 +2,20 @@ const db = require('../models');
 
 const { Op } = require('sequelize');
 
+
+
+const addBook = async (titulo, autor, cover,  precio) => {
+    const nuevoLibro = await db.libro.create({
+        titulo,
+        precio,
+        cover: cover,
+        autorId: autor
+    });
+
+    return nuevoLibro;
+}
+
+
 const getBooks = async () => {
   const libros = await  db.libro.findAll(
       { 
@@ -58,5 +72,6 @@ module.exports = {
     getBooks,
     getAuthor,
     getBookById,
-    search
+    search,
+    addBook
 }

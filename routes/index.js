@@ -8,9 +8,15 @@ const api = require('../api/api')
 // });
 
 
-router.get('/agregar', (req, res) => {
-  // res.sender('estas en agregar');
-  res.render('pages/agregar', {titulo: 'estas en agregar'});
+router.get('/agregar', async (req, res) => {
+  // Conseguir los autores
+  const autores = await api.getAuthor();
+
+  // Enviarselos al render
+  res.render('pages/agregar', {
+    titulo: 'Estás en agregar',
+    autores
+  });
 });
 
 
@@ -22,9 +28,14 @@ router.get('/busqueda_proceso',async (req, res) => {
 });
 
 
-router.post('/agregar_proceso',(req,res) => {
+
+
+router.post('/agregar_proceso', async (req,res) => {
   console.log(req.body);
-  res.send('vas bien, estas en el POST');
+
+  const {titulo, autor,cover, precio} = req.body;
+  const agregar = await api.addBook(titulo,autor,cover, precio);
+    res.send(agregar);
 });
 
 
@@ -56,7 +67,8 @@ router.get('/libro/:id', async (req, res) => {
   res.render('pages/book',{
     titulo: libro.titulo,
     autor: libro.autor.nombreCompleto,
-    precio: libro.precio
+    precio: libro.precio,
+    cover: libro.cover
   });
 
   

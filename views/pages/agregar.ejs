@@ -14,8 +14,18 @@
 
     <label>
         Autor:
-        <input type="text" name="autor"> 
-    </label>
+  <select name="autor">
+    <% { autores.forEach(autor => { %>
+      <option value="<%= autor.id %>"><%= autor.nombreCompleto %></option>
+    <% })} %>
+
+  </select><br>
+</label>
+  <label><br>
+    Cover:
+    <input type="text" name="cover">
+  </label>
+ 
     <label><br>
         precio:
         <input type="text" name="precio"> 
